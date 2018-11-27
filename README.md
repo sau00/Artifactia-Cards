@@ -1,3 +1,2 @@
 # Artifactia-Cards
-Go service with card list Artifactia.ru
-[Artifact Cards](https://artifactia.ru/)
+Go service with card list [Artifactia.ru](https://artifactia.ru/)

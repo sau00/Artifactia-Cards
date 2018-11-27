@@ -1,0 +1,47 @@
+{{define "header"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Портфолио студента</title>
+
+    <link href="/static/lks/styles.css" rel="stylesheet">
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+    <link href="/static/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/select2/select2.min.css" rel="stylesheet">
+    <link href="/static/select2/select2.bootstrap.css" rel="stylesheet">
+    <link href="/static/datatables/datatables.min.css" rel="stylesheet">
+
+    <script src="/static/jquery/js/jquery-3.3.1.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="/static/bootstrap-datepicker/locales/bootstrap-datepicker.ru.min.js"></script>
+    <script src="/static/select2/select2.full.min.js"></script>
+    <script src="/static/diff/diff.js"></script>
+    <script src="/static/datatables/datatables.min.js"></script>
+    <script src="/static/lks/actions.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+    <div class="container">
+        <a href="/" class="navbar-brand"><img src="/static/lks/images/eulogo-lite.png"
+                                              style="padding: 0 10px 0 0; height: 32px;">Портфолио студента</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+
+{{end}}

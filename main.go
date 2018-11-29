@@ -1,13 +1,12 @@
 package main
 
 import (
+	"artifactia-cards/app/handlers"
 	"github.com/labstack/echo"
+	"github.com/labstack/gommon/log"
 	"gopkg.in/mgo.v2"
 	"html/template"
-	"github.com/labstack/gommon/log"
-	"artifactia-cards/app/handlers"
 	"io"
-	"github.com/labstack/echo-contrib/session"
 	"net/http"
 )
 
@@ -57,6 +56,7 @@ func main() {
 	}
 
 	e.GET("/", h.FrontendIndexGET)
+	e.GET("/parser", h.ParseFunction)
 
 	e.Logger.Fatal(e.Start(":1234"))
 }
@@ -66,14 +66,11 @@ type Template struct {
 }
 
 func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
-	s, _ := session.Get("session", c)
-
 	type Data struct {
-		Session interface{}
-		Data    interface{}
+		Data interface{}
 	}
 
-	return t.templates.ExecuteTemplate(w, name, Data{s.Values, data})
+	return t.templates.ExecuteTemplate(w, name, Data{data})
 }
 
 func customHTTPErrorHandler(err error, c echo.Context) {

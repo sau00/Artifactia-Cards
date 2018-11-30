@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"github.com/labstack/echo"
 	"gopkg.in/mgo.v2"
 )
@@ -16,6 +15,6 @@ func (h *Handler) Database() (*mgo.Database, *mgo.Session) {
 }
 
 func (h *Handler) FrontendIndexGET(c echo.Context) error {
-	fmt.Println("Hello world!")
-	return nil
+
+	return c.Render(200, "frontend/index", nil)
 }

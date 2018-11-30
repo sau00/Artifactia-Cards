@@ -1,8 +1,10 @@
 package handlers
 
 import (
+	"artifactia-cards/app/models"
 	"github.com/labstack/echo"
 	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 type Handler struct {
@@ -16,5 +18,14 @@ func (h *Handler) Database() (*mgo.Database, *mgo.Session) {
 
 func (h *Handler) FrontendIndexGET(c echo.Context) error {
 
-	return c.Render(200, "frontend/index", nil)
+	db, cn := h.Database()
+	defer cn.Close()
+
+	var cards []models.Card
+
+	db.C("cards").Find(bson.M{}).All(&cards)
+
+	return c.Render(200, "frontend/index", struct {
+		Cards interface{}
+	}{cards})
 }

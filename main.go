@@ -2,12 +2,15 @@ package main
 
 import (
 	"artifactia-cards/app/handlers"
+	"artifactia-cards/app/services"
+	"fmt"
 	"github.com/labstack/echo"
 	"github.com/labstack/gommon/log"
 	"gopkg.in/mgo.v2"
 	"html/template"
 	"io"
 	"net/http"
+	"os"
 )
 
 const (
@@ -18,47 +21,65 @@ const (
 var ENV = ENV_PROD
 
 func main() {
-	e := echo.New()
-
-	e.Static("/static", "static")
-	e.Static("/uploads", "uploads")
 
 	// Database Connection
 	db, err := mgo.Dial("mongodb://localhost")
 	if err != nil {
-		e.Logger.Fatal(err)
+		fmt.Println(err)
 	}
 
-	funcMap := template.FuncMap{
-		//"displayNewLines": func(s string) template.HTML {
-		//	return template.HTML(strings.Replace(s, "\n", "<br />", -1))
-		//},
+	if len(os.Args) > 1 {
+
+		args := os.Args[1:]
+
+		switch args[0] {
+
+		case "cards":
+			s := &services.Service{
+				DB: db,
+			}
+
+			s.ParseCards()
+
+		default:
+			fmt.Println("Can't enter the matrix")
+		}
+	} else {
+		e := echo.New()
+
+		e.Static("/static", "static")
+		e.Static("/uploads", "uploads")
+
+		funcMap := template.FuncMap{
+			//"displayNewLines": func(s string) template.HTML {
+			//	return template.HTML(strings.Replace(s, "\n", "<br />", -1))
+			//},
+		}
+
+		// Template Engine
+		t := &Template{
+			templates: template.Must(template.New("lks").Funcs(funcMap).ParseGlob("app/views/*/*.html")),
+		}
+
+		if ENV == ENV_PROD {
+			e.HTTPErrorHandler = customHTTPErrorHandler
+		} else if ENV == ENV_DEV {
+			e.Debug = true
+		}
+
+		// Configuration
+		e.Renderer = t
+		e.Logger.SetLevel(log.ERROR)
+
+		h := &handlers.Handler{
+			DB: db,
+		}
+
+		// Routes
+		e.GET("/", h.FrontendIndexGET)
+
+		e.Logger.Fatal(e.Start(":1234"))
 	}
-
-	// Template Engine
-	t := &Template{
-		templates: template.Must(template.New("lks").Funcs(funcMap).ParseGlob("app/views/*/*.html")),
-	}
-
-	if ENV == ENV_PROD {
-		e.HTTPErrorHandler = customHTTPErrorHandler
-	} else if ENV == ENV_DEV {
-		e.Debug = true
-	}
-
-	// Configuration
-	e.Renderer = t
-	e.Logger.SetLevel(log.ERROR)
-
-	// Routes
-	h := &handlers.Handler{
-		DB: db,
-	}
-
-	e.GET("/", h.FrontendIndexGET)
-	e.GET("/parser", h.ParseFunction)
-
-	e.Logger.Fatal(e.Start(":1234"))
 }
 
 type Template struct {

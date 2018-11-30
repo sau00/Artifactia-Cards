@@ -34,7 +34,7 @@ func main() {
 
 		switch args[0] {
 
-		case "cards":
+		case "--cards":
 			s := &services.Service{
 				DB: db,
 			}

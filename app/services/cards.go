@@ -6,8 +6,11 @@ import (
 	"fmt"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
+	"io"
 	"io/ioutil"
+	"net/http"
 	"os"
+	"strconv"
 )
 
 type Service struct {
@@ -41,7 +44,9 @@ type CardSet struct {
 				English string `json:"english"`
 				Russian string `json:"russian"`
 			} `json:"card_text"`
-			MiniImage  string `json:"mini_image"`
+			MiniImage  struct {
+				Default string `json:"default"`
+			} `json:"mini_image"`
 			LargeImage struct {
 				English string `json:"default"`
 				Russian string `json:"russian"`
@@ -89,13 +94,6 @@ func (s *Service) ParseCards() {
 		cardDb.CardText.English = card.CardText.English
 		cardDb.CardText.Russian = card.CardText.Russian
 
-		//cardDb := models.Card{
-		//	CardName: struct {
-		//		English string
-		//		Russian string
-		//	}{English: , Russian: },
-		//}
-
 		fmt.Println(card.CardId)
 
 		_, err := db.C("cards").Upsert(bson.M{"card_id": card.CardId}, cardDb)
@@ -103,5 +101,33 @@ func (s *Service) ParseCards() {
 		if err != nil {
 			fmt.Println(err)
 		}
+
+		err = saveImage(card.MiniImage.Default, "uploads/cards/mini/" + strconv.Itoa(card.CardId) + ".png")
+
+		if err != nil {
+			fmt.Println(err)
+		}
 	}
+}
+
+func saveImage(url, output string) error {
+
+	response, err := http.Get(url)
+	if err != nil {
+		return err
+	}
+	defer response.Body.Close()
+
+	file, err := os.Create(output)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	_, err = io.Copy(file, response.Body)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

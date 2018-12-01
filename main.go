@@ -51,9 +51,9 @@ func main() {
 		e.Static("/uploads", "uploads")
 
 		funcMap := template.FuncMap{
-			//"displayNewLines": func(s string) template.HTML {
-			//	return template.HTML(strings.Replace(s, "\n", "<br />", -1))
-			//},
+			"html": func(s string) template.HTML {
+				return template.HTML(s)
+			},
 		}
 
 		// Template Engine
@@ -78,7 +78,7 @@ func main() {
 		// Routes
 		e.GET("/", h.FrontendIndexGET)
 
-		e.Logger.Fatal(e.Start(":1234"))
+		e.Logger.Fatal(e.Start(":1233"))
 	}
 }
 

@@ -1645,34 +1645,6 @@ li {
     margin-bottom: 10px;
 }
 
-/* Tables
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-table {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 100%;
-    max-width: 100%;
-    margin: 17px 0;
-    background-color: transparent;
-}
-
-th,
-td {
-    padding: 10px 12px;
-    text-align: left;
-    border-bottom: 1px solid #e1e1e1;
-}
-
-th:first-child,
-td:first-child {
-    padding-left: 0;
-}
-
-th:last-child,
-td:last-child {
-    padding-right: 0;
-}
-
 /* Elements
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 hr {

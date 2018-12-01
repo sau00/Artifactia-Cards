@@ -1,0 +1,41 @@
+.Uncommon {
+    background: #8fa1af;
+}
+
+.Common {
+    background: #9a5b30;
+}
+
+.Basic {
+    background: #f3f3f3;
+}
+
+.Rare {
+    background: #c1840f;
+}
+
+.badge-color {
+    width: 50px;
+    height: 25px;
+    display: block !important;
+}
+
+.badge-green {
+    color: #61bd4f;
+    background: #61bd4f;
+}
+
+.badge-black {
+    color: #555;
+    background: #555;
+}
+
+.badge-blue {
+    color: #1880d9;
+    background: #1880d9;
+}
+
+.badge-red {
+    color: #d33131;
+    background: #d33131;
+}

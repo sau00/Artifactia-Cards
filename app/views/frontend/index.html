@@ -1,31 +1,118 @@
 {{define "frontend/index"}}
     {{template "layouts/header" . }}
+    <div class="global-wrap">
+        <div class="section-content-wrap">
+            <div class="section-header wrap">
+                <header class="header-wrap flex">
+                    <div class="header-logo">
+                        <div class="is-logo"><a href="https://artifactia.ru/"><img
+                                        src="/static/app/logo.png"
+                                        alt="Artifactia — русскоязычное сообщество игры Artifact"></a></div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Index page Hello world</h1>
-
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th scope="col">Image</th>
-                        <th scope="col" style="width: 200px;">Title</th>
-                        <th scope="col">Description</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    {{range .Data.Cards}}
-                        <tr>
-                            <td><img src="/uploads/cards/mini/{{ .CardId }}.png" style="width: 75px;"/></td>
-                            <td>{{ .CardName.English }}</td>
-                            <td>{{ .CardText.English }}</td>
-                        </tr>
-                    {{end}}
-                    </tbody>
-                </table>
+                    </div>
+                    <div class="header-nav">
+                        <nav class="nav-wrap">
+                            <label for="toggle" class="nav-label hamburger hamburger-minus">
+					<span class="hamburger-box">
+						<span class="hamburger-inner"></span>
+					</span>
+                            </label>
+                            <input type="checkbox" id="toggle" class="nav-toggle">
+                            <ul class="nav-list">
+                                <li class="nav-list-item">
+                                    <a href="https://artifactia.ru/tag/news/" class="nav-link">Новости</a>
+                                    <span class="nav-dot"></span>
+                                </li>
+                                <li class="nav-list-item">
+                                    <a href="https://artifactia.ru/tag/cards/" class="nav-link">Карты</a>
+                                    <span class="nav-dot"></span>
+                                </li>
+                                <li class="nav-list-item">
+                                    <a href="https://artifactia.ru/tag/guides/" class="nav-link">Гайды</a>
+                                    <span class="nav-dot"></span>
+                                </li>
+                                <li class="nav-list-item search-open"><span>Search</span>
+                                    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.420346,15.5800244 L24,21.1596784 L21.1596784,24 L15.5800244,18.420346 C13.9925104,19.4717887 12.088789,20.0841064 10.0420532,20.0841064 C4.49598037,20.0841064 0,15.5881261 0,10.0420532 C0,4.49598037 4.49598037,0 10.0420532,0 C15.5881261,0 20.0841064,4.49598037 20.0841064,10.0420532 C20.0841064,12.088789 19.4717887,13.9925104 18.420346,15.5800244 Z M10.0420532,16.0672851 C13.3696969,16.0672851 16.0672851,13.3696969 16.0672851,10.0420532 C16.0672851,6.71440951 13.3696969,4.01682129 10.0420532,4.01682129 C6.71440951,4.01682129 4.01682129,6.71440951 4.01682129,10.0420532 C4.01682129,13.3696969 6.71440951,16.0672851 10.0420532,16.0672851 Z"></path>
+                                    </svg>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="blog-description flex">Карты, гайды, колоды, новости, турниры</div>
+                </header>
             </div>
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-hover table-striped table-borderless">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th style="width: 250px;">Название карты</th>
+                                <th class="text-left" style="width: 200px;">Цвет</th>
+                                <th>Тип</th>
+                                <th class="text-center">Редкость</th>
+                                <th class="text-right">Манакост</th>
+                                <th class="text-right">Стоимость</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {{range .Data.Cards}}
+                                {{if and (ne .CardType "Passive Ability") (ne .CardType "Ability")}}
+                                    <tr>
+                                        <td><img src="/uploads/cards/mini/{{ .CardId }}.png" style="width: 50px;"/></td>
+                                        <td>
+                                            {{ .CardName.Russian }} <br/>
+                                            <small class="text-muted">{{ .CardName.English }}</small>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="badge badge-color badge-{{ .Color }}"></span>
+                                        </td>
+                                        <td>
+
+                                            {{if eq .CardType "Hero"}}
+                                                <img src="/static/app/hero.svg" style="width: 25px;">
+                                                <span class="badge">Герой</span>
+                                            {{end}}
+
+                                            {{if eq .CardType "Spell"}}
+                                                <img src="/static/app/spell.svg" style="width: 25px;">
+                                                <span class="badge">Заклинание</span>
+                                            {{end}}
+
+
+                                            {{if eq .CardType "Creep"}}
+                                                <img src="/static/app/creep.svg" style="width: 25px;">
+                                                <span class="badge">Крип</span>
+                                            {{end}}
+
+                                            {{if eq .CardType "Improvement"}}
+                                                <img src="/static/app/improvement.svg" style="width: 25px;">
+                                                <span class="badge">Улучшение</span>
+                                            {{end}}
+
+                                            {{if eq .CardType "Item"}}
+                                                <img src="/static/app/item.svg" style="width: 25px;">
+                                                <span class="badge">Предмет</span>
+                                            {{end}}
+                                        </td>
+                                        <td class="text-center"><span class="badge {{ .Rarity }}">{{ .Rarity }}</span>
+                                        </td>
+                                        <td class="text-right">{{ .ManaCost }}</td>
+                                        <td class="text-right">{{ .GoldCost }}</td>
+                                    </tr>
+                                {{end}}
+                            {{end}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 

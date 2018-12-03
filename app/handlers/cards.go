@@ -7,6 +7,20 @@ import (
 	"strconv"
 )
 
+func (h *Handler) CardsIndexGET(c echo.Context) error {
+
+	db, cn := h.Database()
+	defer cn.Close()
+
+	var cards []models.Card
+
+	db.C("cards").Find(bson.M{}).All(&cards)
+
+	return c.Render(200, "cards/index", struct {
+		Cards interface{}
+	}{cards})
+}
+
 func (h *Handler) CardsSingleGET(c echo.Context) error {
 	db, cn := h.Database()
 	defer cn.Close()

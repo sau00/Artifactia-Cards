@@ -76,7 +76,7 @@ func main() {
 		}
 
 		// Routes
-		e.GET("/", h.FrontendIndexGET)
+		e.GET("/", h.CardsIndexGET)
 		e.GET("/card/:id", h.CardsSingleGET)
 
 		e.Logger.Fatal(e.Start(":1233"))

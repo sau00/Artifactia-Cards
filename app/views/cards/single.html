@@ -57,25 +57,28 @@
                             {{ html .Data.Card.CardText.Russian }}
                         </p>
 
-                        <table class="table table-borderless table-striped">
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <img src="/static/app/attack.svg" style="width: 50px;">
-                                    <span class="badge" style="font-size: 20px;">Атака {{.Data.Card.Attack}}</span>
-                                </td>
-                                <td>
-                                    <img src="/static/app/armor.svg" style="width: 50px;">
-                                    <span class="badge" style="font-size: 20px;">Броня 0</span>
-                                </td>
-                                <td>
-                                    <img src="/static/app/health.svg" style="width: 50px;">
-                                    <span class="badge"
-                                          style="font-size: 20px;">Здоровье {{.Data.Card.HitPoints}}</span>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        {{if eq .Data.Card.CardType "Hero" "Creep"}}
+
+                            <table class="table table-borderless table-striped">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <img src="/static/app/attack.svg" style="width: 50px;">
+                                        <span class="badge" style="font-size: 20px;">Атака {{.Data.Card.Attack}}</span>
+                                    </td>
+                                    <td>
+                                        <img src="/static/app/armor.svg" style="width: 50px;">
+                                        <span class="badge" style="font-size: 20px;">Броня 0</span>
+                                    </td>
+                                    <td>
+                                        <img src="/static/app/health.svg" style="width: 50px;">
+                                        <span class="badge"
+                                              style="font-size: 20px;">Здоровье {{.Data.Card.HitPoints}}</span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        {{end}}
 
                         <table class="table table-borderless table-striped">
                             <tbody>

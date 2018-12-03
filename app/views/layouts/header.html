@@ -5,9 +5,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
-        <meta name="author" content="">
+        <link rel="shortcut icon" href="/static/app/favicon.png" type="image/png" />
+        <title>{{ .Data.Seo.Title }}</title>
+        <meta name="description" content="{{ .Data.Seo.Description }}" />
 
-        <title>Grid Template for Bootstrap</title>
+        <meta property="og:site_name" content="Artifactia — русскоязычное сообщество игры Artifact" />
+        <meta property="og:title" content="{{ .Data.Seo.Title }}" />
+        <meta property="og:description" content="{{ .Data.Seo.Description }}" />
+        <meta property="og:url" content="{{ .Data.Seo.OG.URL }}" />
+        <meta property="og:image" content="{{ .Data.Seo.OG.Image }}" />
 
         <!-- Bootstrap core CSS -->
         <link href="/static/bootstrap/bootstrap.min.css" rel="stylesheet">

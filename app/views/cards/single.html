@@ -6,7 +6,7 @@
                 <header class="header-wrap flex">
                     <div class="header-logo">
                         <div class="is-logo"><a href="https://artifactia.ru/"><img
-                                        src="/static/app/logo.png"
+                                        src="/cards/static/app/logo.png"
                                         alt="Artifactia — русскоязычное сообщество игры Artifact"></a></div>
 
                     </div>
@@ -47,7 +47,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <img src="/uploads/cards/large/rus/{{ .Data.Card.CardId}}.png" class="img-fluid">
+                        <img src="/cards/uploads/cards/large/rus/{{ .Data.Card.CardId}}.png" class="img-fluid">
                     </div>
                     <div class="col-md-8">
                         <h1 style="margin-bottom: 0;">{{ .Data.Card.CardName.Russian }}</h1>
@@ -63,15 +63,15 @@
                                 <tbody>
                                 <tr>
                                     <td>
-                                        <img src="/static/app/attack.svg" style="width: 50px;">
+                                        <img src="/cards/static/app/attack.svg" style="width: 50px;">
                                         <span class="badge" style="font-size: 20px;">Атака {{.Data.Card.Attack}}</span>
                                     </td>
                                     <td>
-                                        <img src="/static/app/armor.svg" style="width: 50px;">
+                                        <img src="/cards/static/app/armor.svg" style="width: 50px;">
                                         <span class="badge" style="font-size: 20px;">Броня 0</span>
                                     </td>
                                     <td>
-                                        <img src="/static/app/health.svg" style="width: 50px;">
+                                        <img src="/cards/static/app/health.svg" style="width: 50px;">
                                         <span class="badge"
                                               style="font-size: 20px;">Здоровье {{.Data.Card.HitPoints}}</span>
                                     </td>
@@ -86,27 +86,27 @@
                                 <td class="text-right">Тип</td>
                                 <td>
                                     {{if eq .Data.Card.CardType "Hero"}}
-                                        <img src="/static/app/hero.svg" style="width: 25px;">
+                                        <img src="/cards/static/app/hero.svg" style="width: 25px;">
                                         <span class="badge">Герой</span>
                                     {{end}}
 
                                     {{if eq .Data.Card.CardType "Spell"}}
-                                        <img src="/static/app/spell.svg" style="width: 25px;">
+                                        <img src="/cards/static/app/spell.svg" style="width: 25px;">
                                         <span class="badge">Заклинание</span>
                                     {{end}}
 
                                     {{if eq .Data.Card.CardType "Creep"}}
-                                        <img src="/static/app/creep.svg" style="width: 25px;">
+                                        <img src="/cards/static/app/creep.svg" style="width: 25px;">
                                         <span class="badge">Крип</span>
                                     {{end}}
 
                                     {{if eq .Data.Card.CardType "Improvement"}}
-                                        <img src="/static/app/improvement.svg" style="width: 25px;">
+                                        <img src="/cards/static/app/improvement.svg" style="width: 25px;">
                                         <span class="badge">Улучшение</span>
                                     {{end}}
 
                                     {{if eq .Data.Card.CardType "Item"}}
-                                        <img src="/static/app/item.svg" style="width: 25px;">
+                                        <img src="/cards/static/app/item.svg" style="width: 25px;">
                                         <span class="badge">Предмет</span>
                                     {{end}}
                                 </td>

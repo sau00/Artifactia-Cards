@@ -6,7 +6,7 @@
                 <header class="header-wrap flex">
                     <div class="header-logo">
                         <div class="is-logo"><a href="https://artifactia.ru/"><img
-                                        src="/static/app/logo.png"
+                                        src="/cards/static/app/logo.png"
                                         alt="Artifactia — русскоязычное сообщество игры Artifact"></a></div>
 
                     </div>
@@ -64,7 +64,7 @@
                             {{range .Data.Cards}}
                                 {{if and (ne .CardType "Passive Ability") (ne .CardType "Ability")}}
                                     <tr>
-                                        <td><img src="/uploads/cards/mini/{{ .CardId }}.png" style="width: 50px;"/></td>
+                                        <td><img src="/cards/uploads/cards/mini/{{ .CardId }}.png" style="width: 50px;"/></td>
                                         <td>
                                             <a href="/id/{{ .CardId }}" style="color: #ffffff;">{{ .CardName.Russian }} <br/>
                                                 <small class="text-muted">{{ .CardName.English }}</small>
@@ -75,28 +75,28 @@
                                         </td>
                                         <td>
                                             {{if eq .CardType "Hero"}}
-                                                <img src="/static/app/hero.svg" style="width: 25px;">
+                                                <img src="/cards/static/app/hero.svg" style="width: 25px;">
                                                 <span class="badge">Герой</span>
                                             {{end}}
 
                                             {{if eq .CardType "Spell"}}
-                                                <img src="/static/app/spell.svg" style="width: 25px;">
+                                                <img src="/cards/static/app/spell.svg" style="width: 25px;">
                                                 <span class="badge">Заклинание</span>
                                             {{end}}
 
 
                                             {{if eq .CardType "Creep"}}
-                                                <img src="/static/app/creep.svg" style="width: 25px;">
+                                                <img src="/cards/static/app/creep.svg" style="width: 25px;">
                                                 <span class="badge">Крип</span>
                                             {{end}}
 
                                             {{if eq .CardType "Improvement"}}
-                                                <img src="/static/app/improvement.svg" style="width: 25px;">
+                                                <img src="/cards/statihc/app/improvement.svg" style="width: 25px;">
                                                 <span class="badge">Улучшение</span>
                                             {{end}}
 
                                             {{if eq .CardType "Item"}}
-                                                <img src="/static/app/item.svg" style="width: 25px;">
+                                                <img src="/cards/static/app/item.svg" style="width: 25px;">
                                                 <span class="badge">Предмет</span>
                                             {{end}}
                                         </td>

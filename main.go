@@ -47,8 +47,8 @@ func main() {
 	} else {
 		e := echo.New()
 
-		e.Static("/static", "static")
-		e.Static("/uploads", "uploads")
+		e.Static("/cards/static", "static")
+		e.Static("/cards/uploads", "uploads")
 
 		funcMap := template.FuncMap{
 			"html": func(s string) template.HTML {
@@ -76,10 +76,11 @@ func main() {
 		}
 
 		// Routes
-		e.GET("/", h.CardsIndexGET)
-		e.GET("/id/:id", h.CardsSingleGET)
+		e.GET("/cards", h.CardsIndexGET)
+		e.GET("/cards/", h.CardsIndexGET)
+		e.GET("/cards/id/:id", h.CardsSingleGET)
 
-		e.Logger.Fatal(e.Start(":1233"))
+		e.Logger.Fatal(e.Start("127.0.0.1:1233"))
 	}
 }
 

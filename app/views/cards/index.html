@@ -1,53 +1,9 @@
 {{define "cards/index"}}
     {{template "layouts/header" . }}
-    <div class="global-wrap" style="height: auto !important;">
-        <div class="section-content-wrap">
-            <div class="section-header wrap">
-                <header class="header-wrap flex">
-                    <div class="header-logo">
-                        <div class="is-logo"><a href="https://artifactia.ru/"><img
-                                        src="/cards/static/app/logo.png"
-                                        alt="Artifactia — русскоязычное сообщество игры Artifact"></a></div>
-
-                    </div>
-                    <div class="header-nav">
-                        <nav class="nav-wrap">
-                            <label for="toggle" class="nav-label hamburger hamburger-minus">
-					<span class="hamburger-box">
-						<span class="hamburger-inner"></span>
-					</span>
-                            </label>
-                            <input type="checkbox" id="toggle" class="nav-toggle">
-                            <ul class="nav-list">
-                                <li class="nav-list-item">
-                                    <a href="https://artifactia.ru/tag/news/" class="nav-link">Новости</a>
-                                    <span class="nav-dot"></span>
-                                </li>
-                                <li class="nav-list-item">
-                                    <a href="https://artifactia.ru/cards/" class="nav-link">Карты</a>
-                                    <span class="nav-dot"></span>
-                                </li>
-                                <li class="nav-list-item">
-                                    <a href="https://artifactia.ru/tag/guides/" class="nav-link">Гайды</a>
-                                    <span class="nav-dot"></span>
-                                </li>
-                                <li class="nav-list-item search-open"><span>Искать</span>
-                                    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M18.420346,15.5800244 L24,21.1596784 L21.1596784,24 L15.5800244,18.420346 C13.9925104,19.4717887 12.088789,20.0841064 10.0420532,20.0841064 C4.49598037,20.0841064 0,15.5881261 0,10.0420532 C0,4.49598037 4.49598037,0 10.0420532,0 C15.5881261,0 20.0841064,4.49598037 20.0841064,10.0420532 C20.0841064,12.088789 19.4717887,13.9925104 18.420346,15.5800244 Z M10.0420532,16.0672851 C13.3696969,16.0672851 16.0672851,13.3696969 16.0672851,10.0420532 C16.0672851,6.71440951 13.3696969,4.01682129 10.0420532,4.01682129 C6.71440951,4.01682129 4.01682129,6.71440951 4.01682129,10.0420532 C4.01682129,13.3696969 6.71440951,16.0672851 10.0420532,16.0672851 Z"></path>
-                                    </svg>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="blog-description flex">Карты, гайды, колоды, новости, турниры</div>
-                </header>
-            </div>
-
-
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <table class="table table-hover table-striped table-borderless" id="cards">
+                        <table class="table table-responsive table-hover table-striped table-borderless" id="cards">
                             <thead>
                             <tr>
                                 <th></th>
@@ -64,9 +20,11 @@
                             {{range .Data.Cards}}
                                 {{if and (ne .CardType "Passive Ability") (ne .CardType "Ability")}}
                                     <tr>
-                                        <td><img src="/cards/uploads/cards/mini/{{ .CardId }}.png" style="width: 50px;"/></td>
+                                        <td><img src="/cards/uploads/cards/mini/{{ .CardId }}.png"
+                                                 style="width: 50px;"/></td>
                                         <td>
-                                            <a href="/cards/id/{{ .CardId }}" style="color: #ffffff;">{{ .CardName.Russian }} <br/>
+                                            <a href="/cards/id/{{ .CardId }}"
+                                               style="color: #ffffff;">{{ .CardName.Russian }} <br/>
                                                 <small class="text-muted">{{ .CardName.English }}</small>
                                             </a>
                                         </td>
@@ -91,7 +49,7 @@
                                             {{end}}
 
                                             {{if eq .CardType "Improvement"}}
-                                                <img src="/cards/statihc/app/improvement.svg" style="width: 25px;">
+                                                <img src="/cards/static/app/improvement.svg" style="width: 25px;">
                                                 <span class="badge">Улучшение</span>
                                             {{end}}
 
@@ -112,9 +70,5 @@
                     </div>
                 </div>
             </div>
-
-        </div>
-    </div>
-
     {{template "layouts/footer" . }}
 {{end}}

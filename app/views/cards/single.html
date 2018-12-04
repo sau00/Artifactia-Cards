@@ -1,150 +1,103 @@
 {{define "cards/single"}}
     {{template "layouts/header" . }}
-    <div class="global-wrap">
-        <div class="section-content-wrap">
-            <div class="section-header wrap">
-                <header class="header-wrap flex">
-                    <div class="header-logo">
-                        <div class="is-logo"><a href="https://artifactia.ru/"><img
-                                        src="/cards/static/app/logo.png"
-                                        alt="Artifactia — русскоязычное сообщество игры Artifact"></a></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1 style="margin-bottom: 0;">{{ .Data.Card.CardName.Russian }}</h1>
+                <h4 class="text-muted"
+                    style="font-weight: normal; margin-top: 0;">{{ .Data.Card.CardName.English }}</h4>
+                <p>
+                    {{ html .Data.Card.CardText.Russian }}
+                </p>
 
-                    </div>
-                    <div class="header-nav">
-                        <nav class="nav-wrap">
-                            <label for="toggle" class="nav-label hamburger hamburger-minus">
-					<span class="hamburger-box">
-						<span class="hamburger-inner"></span>
-					</span>
-                            </label>
-                            <input type="checkbox" id="toggle" class="nav-toggle">
-                            <ul class="nav-list">
-                                <li class="nav-list-item">
-                                    <a href="https://artifactia.ru/tag/news/" class="nav-link">Новости</a>
-                                    <span class="nav-dot"></span>
-                                </li>
-                                <li class="nav-list-item">
-                                    <a href="https://artifactia.ru/cards/" class="nav-link">Карты</a>
-                                    <span class="nav-dot"></span>
-                                </li>
-                                <li class="nav-list-item">
-                                    <a href="https://artifactia.ru/tag/guides/" class="nav-link">Гайды</a>
-                                    <span class="nav-dot"></span>
-                                </li>
-                                <li class="nav-list-item search-open"><span>Search</span>
-                                    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M18.420346,15.5800244 L24,21.1596784 L21.1596784,24 L15.5800244,18.420346 C13.9925104,19.4717887 12.088789,20.0841064 10.0420532,20.0841064 C4.49598037,20.0841064 0,15.5881261 0,10.0420532 C0,4.49598037 4.49598037,0 10.0420532,0 C15.5881261,0 20.0841064,4.49598037 20.0841064,10.0420532 C20.0841064,12.088789 19.4717887,13.9925104 18.420346,15.5800244 Z M10.0420532,16.0672851 C13.3696969,16.0672851 16.0672851,13.3696969 16.0672851,10.0420532 C16.0672851,6.71440951 13.3696969,4.01682129 10.0420532,4.01682129 C6.71440951,4.01682129 4.01682129,6.71440951 4.01682129,10.0420532 C4.01682129,13.3696969 6.71440951,16.0672851 10.0420532,16.0672851 Z"></path>
-                                    </svg>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="blog-description flex">Карты, гайды, колоды, новости, турниры</div>
-                </header>
-            </div>
+                {{if eq .Data.Card.CardType "Hero" "Creep"}}
 
+                    <table class="table table-borderless table-striped">
+                        <tbody>
+                        <tr class="text-center">
+                            <td>
+                                <img src="/cards/static/app/attack.svg" style="width: 50px;">
+                                <span class="badge" style="font-size: 20px;">Атака {{.Data.Card.Attack}}</span>
+                            </td>
+                            <td>
+                                <img src="/cards/static/app/armor.svg" style="width: 50px;">
+                                <span class="badge" style="font-size: 20px;">Броня 0</span>
+                            </td>
+                            <td>
+                                <img src="/cards/static/app/health.svg" style="width: 50px;">
+                                <span class="badge"
+                                      style="font-size: 20px;">Здоровье {{.Data.Card.HitPoints}}</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                {{end}}
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img src="/cards/uploads/cards/large/rus/{{ .Data.Card.CardId}}.png" class="img-fluid">
-                    </div>
-                    <div class="col-md-8">
-                        <h1 style="margin-bottom: 0;">{{ .Data.Card.CardName.Russian }}</h1>
-                        <h4 class="text-muted"
-                            style="font-weight: normal; margin-top: 0;">{{ .Data.Card.CardName.English }}</h4>
-                        <p>
-                            {{ html .Data.Card.CardText.Russian }}
-                        </p>
-
-                        {{if eq .Data.Card.CardType "Hero" "Creep"}}
-
-                            <table class="table table-borderless table-striped">
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <img src="/cards/static/app/attack.svg" style="width: 50px;">
-                                        <span class="badge" style="font-size: 20px;">Атака {{.Data.Card.Attack}}</span>
-                                    </td>
-                                    <td>
-                                        <img src="/cards/static/app/armor.svg" style="width: 50px;">
-                                        <span class="badge" style="font-size: 20px;">Броня 0</span>
-                                    </td>
-                                    <td>
-                                        <img src="/cards/static/app/health.svg" style="width: 50px;">
-                                        <span class="badge"
-                                              style="font-size: 20px;">Здоровье {{.Data.Card.HitPoints}}</span>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        {{end}}
-
-                        <table class="table table-borderless table-striped">
-                            <tbody>
-                            <tr>
-                                <td class="text-right">Тип</td>
-                                <td>
-                                    {{if eq .Data.Card.CardType "Hero"}}
-                                        <img src="/cards/static/app/hero.svg" style="width: 25px;">
-                                        <span class="badge">Герой</span>
-                                    {{end}}
-
-                                    {{if eq .Data.Card.CardType "Spell"}}
-                                        <img src="/cards/static/app/spell.svg" style="width: 25px;">
-                                        <span class="badge">Заклинание</span>
-                                    {{end}}
-
-                                    {{if eq .Data.Card.CardType "Creep"}}
-                                        <img src="/cards/static/app/creep.svg" style="width: 25px;">
-                                        <span class="badge">Крип</span>
-                                    {{end}}
-
-                                    {{if eq .Data.Card.CardType "Improvement"}}
-                                        <img src="/cards/static/app/improvement.svg" style="width: 25px;">
-                                        <span class="badge">Улучшение</span>
-                                    {{end}}
-
-                                    {{if eq .Data.Card.CardType "Item"}}
-                                        <img src="/cards/static/app/item.svg" style="width: 25px;">
-                                        <span class="badge">Предмет</span>
-                                    {{end}}
-                                </td>
-                            </tr>
-                            {{if .Data.Card.Rarity}}
-                                <tr>
-                                    <td class="text-right">
-                                        Редкость
-                                    </td>
-                                    <td>
-                                        <span class="badge {{ .Data.Card.Rarity }}">{{ .Data.Card.Rarity }}</span>
-                                    </td>
-                                </tr>
+                <table class="table table-borderless table-striped">
+                    <tbody>
+                    <tr>
+                        <td class="text-right">Тип</td>
+                        <td>
+                            {{if eq .Data.Card.CardType "Hero"}}
+                                <img src="/cards/static/app/hero.svg" style="width: 25px;">
+                                <span class="badge">Герой</span>
                             {{end}}
-                            <tr>
-                                <td class="text-right">
-                                    Цвет
-                                </td>
-                                <td>
-                                    <span class="badge badge-color badge-{{ .Data.Card.Color }}"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-right">Манакост</td>
-                                <td>{{ .Data.Card.ManaCost }}</td>
-                            </tr>
-                            <tr>
-                                <td class="text-right">Стоимость</td>
-                                <td>{{ .Data.Card.GoldCost }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+
+                            {{if eq .Data.Card.CardType "Spell"}}
+                                <img src="/cards/static/app/spell.svg" style="width: 25px;">
+                                <span class="badge">Заклинание</span>
+                            {{end}}
+
+                            {{if eq .Data.Card.CardType "Creep"}}
+                                <img src="/cards/static/app/creep.svg" style="width: 25px;">
+                                <span class="badge">Крип</span>
+                            {{end}}
+
+                            {{if eq .Data.Card.CardType "Improvement"}}
+                                <img src="/cards/static/app/improvement.svg" style="width: 25px;">
+                                <span class="badge">Улучшение</span>
+                            {{end}}
+
+                            {{if eq .Data.Card.CardType "Item"}}
+                                <img src="/cards/static/app/item.svg" style="width: 25px;">
+                                <span class="badge">Предмет</span>
+                            {{end}}
+                        </td>
+                    </tr>
+                    {{if .Data.Card.Rarity}}
+                        <tr>
+                            <td class="text-right">
+                                Редкость
+                            </td>
+                            <td>
+                                <span class="badge {{ .Data.Card.Rarity }}">{{ .Data.Card.Rarity }}</span>
+                            </td>
+                        </tr>
+                    {{end}}
+                    <tr>
+                        <td class="text-right">
+                            Цвет
+                        </td>
+                        <td>
+                            <span class="badge badge-color badge-{{ .Data.Card.Color }}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">Манакост</td>
+                        <td>{{ .Data.Card.ManaCost }}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">Стоимость</td>
+                        <td>{{ .Data.Card.GoldCost }}</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
 
+            <div class="col-md-4">
+                <img src="/cards/uploads/cards/large/rus/{{ .Data.Card.CardId}}.png" class="img-fluid">
+            </div>
         </div>
     </div>
-
     {{template "layouts/footer" . }}
 {{end}}

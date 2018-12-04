@@ -5,15 +5,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
-        <link rel="shortcut icon" href="/cards/static/app/favicon.png" type="image/png" />
+        <link rel="shortcut icon" href="/cards/static/app/favicon.png" type="image/png"/>
         <title>{{ .Data.Seo.Title }}</title>
-        <meta name="description" content="{{ .Data.Seo.Description }}" />
+        <meta name="description" content="{{ .Data.Seo.Description }}"/>
 
-        <meta property="og:site_name" content="Artifactia — русскоязычное сообщество игры Artifact" />
-        <meta property="og:title" content="{{ .Data.Seo.Title }}" />
-        <meta property="og:description" content="{{ .Data.Seo.Description }}" />
-        <meta property="og:url" content="{{ .Data.Seo.OG.URL }}" />
-        <meta property="og:image" content="{{ .Data.Seo.OG.Image }}" />
+        <meta property="og:site_name" content="Artifactia — русскоязычное сообщество игры Artifact"/>
+        <meta property="og:title" content="{{ .Data.Seo.Title }}"/>
+        <meta property="og:description" content="{{ .Data.Seo.Description }}"/>
+        <meta property="og:url" content="{{ .Data.Seo.OG.URL }}"/>
+        <meta property="og:image" content="{{ .Data.Seo.OG.Image }}"/>
 
         <!-- Bootstrap core CSS -->
         <link href="/cards/static/bootstrap/bootstrap.min.css" rel="stylesheet">
@@ -24,10 +24,56 @@
         <link href="/cards/static/app/cards.css" rel="stylesheet">
 
         <script type="text/javascript" src="/cards/static/jquery/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="/cards/static/bootstrap/bootstrap.min.js"></script>
         <script type="text/javascript" src="/cards/static/datatables/datatables.min.js"></script>
 
         <script type="text/javascript" src="/cards/static/app/app.js"></script>
     </head>
 
     <body class="global-hash-dark-version global-hash-full-image global-hash-full-width global-hash-red global-hash-post-red global-hash-green global-hash-post-green global-hash-large">
+
+    <div class="global-wrap">
+        <div class="section-content-wrap">
+            <div class="section-header wrap">
+                <header class="header-wrap flex">
+                    <div class="header-logo">
+                        <div class="is-logo"><a href="https://artifactia.ru/"><img
+                                        src="/cards/static/app/logo.png"
+                                        alt="Artifactia — русскоязычное сообщество игры Artifact"></a></div>
+
+                    </div>
+                    <div class="header-nav">
+                        <nav class="nav-wrap">
+                            <label for="toggle" class="nav-label hamburger hamburger-minus">
+					<span class="hamburger-box">
+						<span class="hamburger-inner"></span>
+					</span>
+                            </label>
+                            <input type="checkbox" id="toggle" class="nav-toggle">
+                            <ul class="nav-list">
+                                <li class="nav-list-item">
+                                    <a href="https://artifactia.ru/tag/news/" class="nav-link">Новости</a>
+                                    <span class="nav-dot"></span>
+                                </li>
+                                <li class="nav-list-item">
+                                    <a href="https://artifactia.ru/cards/" class="nav-link">Карты</a>
+                                    <span class="nav-dot"></span>
+                                </li>
+                                <li class="nav-list-item">
+                                    <a href="https://artifactia.ru/tag/guides/" class="nav-link">Гайды</a>
+                                    <span class="nav-dot"></span>
+                                </li>
+                                <li class="nav-list-item search-open"><span>Искать</span>
+                                    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.420346,15.5800244 L24,21.1596784 L21.1596784,24 L15.5800244,18.420346 C13.9925104,19.4717887 12.088789,20.0841064 10.0420532,20.0841064 C4.49598037,20.0841064 0,15.5881261 0,10.0420532 C0,4.49598037 4.49598037,0 10.0420532,0 C15.5881261,0 20.0841064,4.49598037 20.0841064,10.0420532 C20.0841064,12.088789 19.4717887,13.9925104 18.420346,15.5800244 Z M10.0420532,16.0672851 C13.3696969,16.0672851 16.0672851,13.3696969 16.0672851,10.0420532 C16.0672851,6.71440951 13.3696969,4.01682129 10.0420532,4.01682129 C6.71440951,4.01682129 4.01682129,6.71440951 4.01682129,10.0420532 C4.01682129,13.3696969 6.71440951,16.0672851 10.0420532,16.0672851 Z"></path>
+                                    </svg>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="d-none d-xl-block">
+                        <div class="blog-description flex">Карты, гайды, колоды, новости, турниры</div>
+                    </div>
+                </header>
+            </div>
 {{end}}

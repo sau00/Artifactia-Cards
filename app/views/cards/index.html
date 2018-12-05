@@ -2,8 +2,48 @@
     {{template "layouts/header" . }}
             <div class="container">
                 <div class="row">
+                    <div class="col-md-9 mb-3">
+                        <a href="#" class="btn btn-lg btn-card-type">
+                            <img src="/cards/static/app/hero.svg" style="height: 25px;">
+                            <span class="badge">Герой</span>
+                        </a>
+
+                        <a href="#" class="btn btn-lg btn-card-type">
+                            <img src="/cards/static/app/spell.svg" style="height: 25px;">
+                            <span class="badge">Заклинание</span>
+                        </a>
+
+                        <a href="#" class="btn btn-lg btn-card-type">
+                            <img src="/cards/static/app/creep.svg" style="height: 25px;">
+                            <span class="badge">Крип</span>
+                        </a>
+
+                        <a href="#" class="btn btn-lg btn-card-type">
+                            <img src="/cards/static/app/improvement.svg" style="height: 25px;">
+                            <span class="badge">Улучшение</span>
+                        </a>
+
+                        <a href="#" class="btn btn-lg btn-card-type">
+                            <img src="/cards/static/app/item.svg" style="height: 25px;">
+                            <span class="badge">Предмет</span>
+                        </a>
+                    </div>
+
+                    <div class="col-md-3 mb-3 text-right">
+                        <a href="#" class="btn btn-card-color badge-blue"></a>
+                        <a href="#" class="btn btn-card-color badge-red"></a>
+                        <a href="#" class="btn btn-card-color badge-green"></a>
+                        <a href="#" class="btn btn-card-color badge-black"></a>
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <a href="#" class="btn Common" style="color: #ffffff; font-weight: bold;">Обычная</a>
+                        <a href="#" class="btn Uncommon" style="color: #ffffff; font-weight: bold;">Необычная</a>
+                        <a href="#" class="btn Rare" style="color: #ffffff; font-weight: bold;">Редкая</a>
+                    </div>
+
                     <div class="col-md-12">
-                        <table class="table table-responsive table-hover table-striped table-borderless" id="cards">
+                        <table class="table table-responsive table-hover table-striped table-borderless">
                             <thead>
                             <tr>
                                 <th></th>
@@ -20,8 +60,8 @@
                             {{range .Data.Cards}}
                                 {{if and (ne .CardType "Passive Ability") (ne .CardType "Ability")}}
                                     <tr>
-                                        <td><img src="/cards/uploads/cards/mini/{{ .CardId }}.png"
-                                                 style="width: 50px;"/></td>
+                                        <td><a href="/cards/id/{{ .CardId }}"><img src="/cards/uploads/cards/mini/{{ .CardId }}.png"
+                                                 style="width: 50px;"/></a></td>
                                         <td>
                                             <a href="/cards/id/{{ .CardId }}"
                                                style="color: #ffffff;">{{ .CardName.Russian }} <br/>

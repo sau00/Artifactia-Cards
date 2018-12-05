@@ -39,3 +39,18 @@
     color: #d33131;
     background: #d33131;
 }
+
+.btn-card-type {
+    background: #414242;
+    color: #ffffff !important;
+    margin-bottom: 5px;
+}
+
+.active-card-type {
+    background: #c1840f;
+}
+
+.btn-card-color {
+    width: 20%;
+    height: 25px;
+}

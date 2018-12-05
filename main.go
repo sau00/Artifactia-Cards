@@ -80,7 +80,7 @@ func main() {
 		e.GET("/cards/", h.CardsIndexGET)
 		e.GET("/cards/id/:id", h.CardsSingleGET)
 
-		e.Logger.Fatal(e.Start("127.0.0.1:1233"))
+		e.Logger.Fatal(e.Start(":1233"))
 	}
 }
 

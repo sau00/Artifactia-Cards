@@ -109,5 +109,6 @@ func customHTTPErrorHandler(err error, c echo.Context) {
 
 	err = c.Render(code, "layouts/error", struct {
 		Code int
-	}{code})
+		Seo services.Seo
+	}{code, services.Seo{}})
 }

@@ -3,6 +3,7 @@ package handlers
 import (
 	"artifactia-cards/app/models"
 	"artifactia-cards/app/services"
+	"fmt"
 	"github.com/labstack/echo"
 	"gopkg.in/mgo.v2/bson"
 	"net/http"
@@ -59,13 +60,14 @@ func (h *Handler) CardsSingleGET(c echo.Context) error {
 
 	var card models.Card
 
+	var seo services.Seo
+
 	err := db.C("cards").Find(bson.M{"seo.alias": c.Param("alias")}).One(&card)
 
 	if err != nil {
+		fmt.Print("error 404")
 		return &echo.HTTPError{Code: http.StatusNotFound}
 	}
-
-	var seo services.Seo
 
 	seo.Title = card.CardName.Russian + " карта Artifact"
 	seo.Description = "Карта " + card.CardName.Russian + " Artifact"

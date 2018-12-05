@@ -80,8 +80,9 @@ func main() {
 		// Routes
 		e.GET("/cards", h.CardsIndexGET)
 		e.GET("/cards/", h.CardsIndexGET)
-		e.GET("/cards/id/:id", h.CardsSingleOldGET)
 		e.GET("/cards/:alias", h.CardsSingleGET)
+		e.GET("/cards/id/:id", h.CardsSingleOldGET)
+		e.GET("/cards/filter/:filter", h.CardsIndexGET)
 
 		e.GET("/cards/generate", h.CardGenerateAliases)
 

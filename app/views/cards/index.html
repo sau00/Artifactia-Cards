@@ -1,134 +1,141 @@
 {{define "cards/index"}}
     {{template "layouts/header" . }}
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-9 mb-3">
-                        <a href="#" class="btn btn-lg btn-card-type">
-                            <img src="/cards/static/app/hero.svg" style="height: 25px;">
-                            <span class="badge">Герой</span>
-                        </a>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 mb-3">
+                <a href="/cards/filter/hero"
+                   class="btn btn-lg btn-card-type {{if eq .Data.Filter "hero"}}active-card-type{{end}}">
+                    <img src="/cards/static/app/hero.svg" style="height: 25px;">
+                    <span class="badge">Герой</span>
+                </a>
 
-                        <a href="#" class="btn btn-lg btn-card-type">
-                            <img src="/cards/static/app/spell.svg" style="height: 25px;">
-                            <span class="badge">Заклинание</span>
-                        </a>
+                <a href="/cards/filter/spell"
+                   class="btn btn-lg btn-card-type {{if eq .Data.Filter "spell"}}active-card-type{{end}}">
+                    <img src="/cards/static/app/spell.svg" style="height: 25px;">
+                    <span class="badge">Заклинание</span>
+                </a>
 
-                        <a href="#" class="btn btn-lg btn-card-type">
-                            <img src="/cards/static/app/creep.svg" style="height: 25px;">
-                            <span class="badge">Крип</span>
-                        </a>
+                <a href="/cards/filter/creep"
+                   class="btn btn-lg btn-card-type {{if eq .Data.Filter "creep"}}active-card-type{{end}}">
+                    <img src="/cards/static/app/creep.svg" style="height: 25px;">
+                    <span class="badge">Крип</span>
+                </a>
 
-                        <a href="#" class="btn btn-lg btn-card-type">
-                            <img src="/cards/static/app/improvement.svg" style="height: 25px;">
-                            <span class="badge">Улучшение</span>
-                        </a>
+                <a href="/cards/filter/improvement"
+                   class="btn btn-lg btn-card-type {{if eq .Data.Filter "improvement"}}active-card-type{{end}}">
+                    <img src="/cards/static/app/improvement.svg" style="height: 25px;">
+                    <span class="badge">Улучшение</span>
+                </a>
 
-                        <a href="#" class="btn btn-lg btn-card-type">
-                            <img src="/cards/static/app/item.svg" style="height: 25px;">
-                            <span class="badge">Предмет</span>
-                        </a>
-                    </div>
+                <a href="/cards/filter/item"
+                   class="btn btn-lg btn-card-type {{if eq .Data.Filter "item"}}active-card-type{{end}}">
+                    <img src="/cards/static/app/item.svg" style="height: 25px;">
+                    <span class="badge">Предмет</span>
+                </a>
+            </div>
 
-                    <div class="col-md-3 mb-3 text-right">
-                        <a href="#" class="btn btn-card-color badge-blue"></a>
-                        <a href="#" class="btn btn-card-color badge-red"></a>
-                        <a href="#" class="btn btn-card-color badge-green"></a>
-                        <a href="#" class="btn btn-card-color badge-black"></a>
-                    </div>
+            <div class="col-md-3 mb-3 text-right">
+                <a href="/cards/filter/blue" class="btn btn-card-color badge-blue" {{if eq .Data.Filter "blue"}}style="border: solid 1px #ffffff;"{{end}}></a>
+                <a href="/cards/filter/red" class="btn btn-card-color badge-red" {{if eq .Data.Filter "red"}}style="border: solid 1px #ffffff;"{{end}}></a>
+                <a href="/cards/filter/green" class="btn btn-card-color badge-green" {{if eq .Data.Filter "green"}}style="border: solid 1px #ffffff;"{{end}}></a>
+                <a href="/cards/filter/black" class="btn btn-card-color badge-black" {{if eq .Data.Filter "black"}}style="border: solid 1px #ffffff;"{{end}}></a>
+            </div>
 
-                    <div class="col-md-12 mb-3">
-                        <a href="#" class="btn Common" style="color: #ffffff; font-weight: bold;">Обычная</a>
-                        <a href="#" class="btn Uncommon" style="color: #ffffff; font-weight: bold;">Необычная</a>
-                        <a href="#" class="btn Rare" style="color: #ffffff; font-weight: bold;">Редкая</a>
-                    </div>
+            <div class="col-md-12 mb-3">
+                <a href="/cards/filter/common" class="btn Common" style="color: #ffffff; font-weight: bold; {{if eq .Data.Filter "common"}}background:#c1840f{{end}}">Обычная</a>
+                <a href="/cards/filter/uncommon" class="btn Uncommon" style="color: #ffffff; font-weight: bold; {{if eq .Data.Filter "uncommon"}}background:#c1840f{{end}}">Необычная</a>
+                <a href="/cards/filter/rare" class="btn Rare" style="color: #ffffff; font-weight: bold; {{if eq .Data.Filter "rare"}}background:#c1840f{{end}}">Редкая</a>
+                <a href="/cards/" class="btn" style="background: #414242; color: #ffffff;">Все карты</a>
+            </div>
 
-                    <div class="col-md-12">
-                        <table class="table table-responsive table-hover table-striped table-borderless">
-                            <thead>
+            <div class="col-md-12">
+                <table class="table table-hover table-striped table-borderless">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th style="width: 250px;">Название карты</th>
+                        <th class="text-left" style="width: 200px;">Цвет</th>
+                        <th>Тип</th>
+                        <th class="text-center">Редкость</th>
+                        <th class="text-right">Манакост</th>
+                        <th class="text-right">Стоимость</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {{range .Data.Cards}}
+                        {{if and (ne .CardType "Passive Ability") (ne .CardType "Ability")}}
                             <tr>
-                                <th></th>
-                                <th style="width: 250px;">Название карты</th>
-                                <th class="text-left" style="width: 200px;">Цвет</th>
-                                <th>Тип</th>
-                                <th class="text-center">Редкость</th>
-                                <th class="text-right">Манакост</th>
-                                <th class="text-right">Стоимость</th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                                <td><a href="/cards/{{name2url .CardName.English}}"><img
+                                                src="/cards/uploads/cards/mini/{{ .CardId }}.png"
+                                                style="width: 50px;"/></a></td>
+                                <td>
+                                    <a href="/cards/{{name2url .CardName.English}}"
+                                       style="color: #ffffff;">{{ .CardName.Russian }} <br/>
+                                        <small class="text-muted">{{ .CardName.English }}</small>
+                                    </a>
+                                </td>
+                                <td class="text-center">
+                                    <span class="badge badge-color badge-{{ .Color }}"></span>
+                                </td>
+                                <td>
+                                    {{if eq .CardType "Hero"}}
+                                        <img src="/cards/static/app/hero.svg" style="width: 25px;">
+                                        <span class="badge">Герой</span>
+                                    {{end}}
 
-                            {{range .Data.Cards}}
-                                {{if and (ne .CardType "Passive Ability") (ne .CardType "Ability")}}
-                                    <tr>
-                                        <td><a href="/cards/{{name2url .CardName.English}}"><img src="/cards/uploads/cards/mini/{{ .CardId }}.png"
-                                                 style="width: 50px;"/></a></td>
-                                        <td>
-                                            <a href="/cards/{{name2url .CardName.English}}"
-                                               style="color: #ffffff;">{{ .CardName.Russian }} <br/>
-                                                <small class="text-muted">{{ .CardName.English }}</small>
-                                            </a>
-                                        </td>
-                                        <td class="text-center">
-                                            <span class="badge badge-color badge-{{ .Color }}"></span>
-                                        </td>
-                                        <td>
-                                            {{if eq .CardType "Hero"}}
-                                                <img src="/cards/static/app/hero.svg" style="width: 25px;">
-                                                <span class="badge">Герой</span>
-                                            {{end}}
-
-                                            {{if eq .CardType "Spell"}}
-                                                <img src="/cards/static/app/spell.svg" style="width: 25px;">
-                                                <span class="badge">Заклинание</span>
-                                            {{end}}
+                                    {{if eq .CardType "Spell"}}
+                                        <img src="/cards/static/app/spell.svg" style="width: 25px;">
+                                        <span class="badge">Заклинание</span>
+                                    {{end}}
 
 
-                                            {{if eq .CardType "Creep"}}
-                                                <img src="/cards/static/app/creep.svg" style="width: 25px;">
-                                                <span class="badge">Крип</span>
-                                            {{end}}
+                                    {{if eq .CardType "Creep"}}
+                                        <img src="/cards/static/app/creep.svg" style="width: 25px;">
+                                        <span class="badge">Крип</span>
+                                    {{end}}
 
-                                            {{if eq .CardType "Improvement"}}
-                                                <img src="/cards/static/app/improvement.svg" style="width: 25px;">
-                                                <span class="badge">Улучшение</span>
-                                            {{end}}
+                                    {{if eq .CardType "Improvement"}}
+                                        <img src="/cards/static/app/improvement.svg" style="width: 25px;">
+                                        <span class="badge">Улучшение</span>
+                                    {{end}}
 
-                                            {{if eq .CardType "Item"}}
-                                                <img src="/cards/static/app/item.svg" style="width: 25px;">
-                                                <span class="badge">Предмет</span>
-                                            {{end}}
-                                        </td>
-                                        <td class="text-center"><span class="badge {{ .Rarity }}">
+                                    {{if eq .CardType "Item"}}
+                                        <img src="/cards/static/app/item.svg" style="width: 25px;">
+                                        <span class="badge">Предмет</span>
+                                    {{end}}
+                                </td>
+                                <td class="text-center"><span class="badge {{ .Rarity }}">
                                                 {{if eq .Rarity "Common"}}
                                                     Обычная
                                                 {{end}}
 
-                                                {{if eq .Rarity "Uncommon"}}
-                                                    Необычная
-                                                {{end}}
+                                        {{if eq .Rarity "Uncommon"}}
+                                            Необычная
+                                        {{end}}
 
-                                                {{if eq .Rarity "Rare"}}
-                                                    Редкая
-                                                {{end}}
+                                        {{if eq .Rarity "Rare"}}
+                                            Редкая
+                                        {{end}}
                                             </span>
-                                        </td>
-                                        <td class="text-right">
-                                            {{if not (eq .CardType "Item")}}
-                                                {{ .ManaCost }}
-                                            {{end}}
-                                        </td>
-                                        <td class="text-right">
-                                            {{if eq .CardType "Item"}}
-                                                {{ .GoldCost }}
-                                            {{end}}
-                                        </td>
-                                    </tr>
-                                {{end}}
-                            {{end}}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                                </td>
+                                <td class="text-right">
+                                    {{if not (eq .CardType "Item")}}
+                                        {{ .ManaCost }}
+                                    {{end}}
+                                </td>
+                                <td class="text-right">
+                                    {{if eq .CardType "Item"}}
+                                        {{ .GoldCost }}
+                                    {{end}}
+                                </td>
+                            </tr>
+                        {{end}}
+                    {{end}}
+                    </tbody>
+                </table>
             </div>
+        </div>
+    </div>
     {{template "layouts/footer" . }}
 {{end}}

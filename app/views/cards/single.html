@@ -82,20 +82,34 @@
                             <span class="badge badge-color badge-{{ .Data.Card.Color }}"></span>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="text-right">Манакост</td>
-                        <td>{{ .Data.Card.ManaCost }}</td>
-                    </tr>
-                    <tr>
-                        <td class="text-right">Стоимость</td>
-                        <td>{{ .Data.Card.GoldCost }}</td>
-                    </tr>
+
+                    {{if not (eq .Data.Card.CardType "Hero")}}
+                        {{if not (eq .Data.Card.CardType "Item")}}
+                            <tr>
+                                <td class="text-right">Манакост</td>
+                                <td>
+                                    {{ .Data.Card.ManaCost }}
+                                </td>
+                            </tr>
+                        {{end}}
+                        {{if eq .Data.Card.CardType "Item"}}
+                            <tr>
+                                <td class="text-right">Стоимость</td>
+                                <td>
+                                    {{ .Data.Card.GoldCost }}
+                                </td>
+                            </tr>
+                        {{end}}
+                    {{end}}
                     </tbody>
                 </table>
             </div>
 
             <div class="col-md-4">
                 <img src="/cards/uploads/cards/large/rus/{{ .Data.Card.CardId}}.png" class="img-fluid">
+                <p class="font-italic text-muted text-center">
+                    {{ .Data.Card.Illustrator }}
+                </p>
             </div>
         </div>
     </div>

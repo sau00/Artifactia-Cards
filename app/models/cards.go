@@ -3,9 +3,14 @@ package models
 import "gopkg.in/mgo.v2/bson"
 
 type Card struct {
-	ID         bson.ObjectId `json:"id" bson:"_id,omitempty"`
-	CardId     int           `json:"card_id" bson:"card_id"`
-	BaseCardId int           `json:"base_card_id" bson:"base_card_id"`
+	ID bson.ObjectId `json:"id" bson:"_id,omitempty"`
+
+	SEO struct {
+		Alias string `json:"alias" bson:"alias"`
+	}
+
+	CardId     int `json:"card_id" bson:"card_id"`
+	BaseCardId int `json:"base_card_id" bson:"base_card_id"`
 
 	CardType  string `json:"card_type" bson:"card_type"`
 	Rarity    string `json:"rarity" bson:"rarity"`

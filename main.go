@@ -54,6 +54,8 @@ func main() {
 			"html": func(s string) template.HTML {
 				return template.HTML(s)
 			},
+
+			"name2url": services.String2Url,
 		}
 
 		// Template Engine
@@ -78,7 +80,10 @@ func main() {
 		// Routes
 		e.GET("/cards", h.CardsIndexGET)
 		e.GET("/cards/", h.CardsIndexGET)
-		e.GET("/cards/id/:id", h.CardsSingleGET)
+		e.GET("/cards/id/:id", h.CardsSingleOldGET)
+		e.GET("/cards/:alias", h.CardsSingleGET)
+
+		e.GET("/cards/generate", h.CardGenerateAliases)
 
 		e.Logger.Fatal(e.Start(":1233"))
 	}

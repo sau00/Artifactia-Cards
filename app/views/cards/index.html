@@ -60,10 +60,10 @@
                             {{range .Data.Cards}}
                                 {{if and (ne .CardType "Passive Ability") (ne .CardType "Ability")}}
                                     <tr>
-                                        <td><a href="/cards/id/{{ .CardId }}"><img src="/cards/uploads/cards/mini/{{ .CardId }}.png"
+                                        <td><a href="/cards/{{name2url .CardName.English}}"><img src="/cards/uploads/cards/mini/{{ .CardId }}.png"
                                                  style="width: 50px;"/></a></td>
                                         <td>
-                                            <a href="/cards/id/{{ .CardId }}"
+                                            <a href="/cards/{{name2url .CardName.English}}"
                                                style="color: #ffffff;">{{ .CardName.Russian }} <br/>
                                                 <small class="text-muted">{{ .CardName.English }}</small>
                                             </a>
@@ -98,10 +98,30 @@
                                                 <span class="badge">Предмет</span>
                                             {{end}}
                                         </td>
-                                        <td class="text-center"><span class="badge {{ .Rarity }}">{{ .Rarity }}</span>
+                                        <td class="text-center"><span class="badge {{ .Rarity }}">
+                                                {{if eq .Rarity "Common"}}
+                                                    Обычная
+                                                {{end}}
+
+                                                {{if eq .Rarity "Uncommon"}}
+                                                    Необычная
+                                                {{end}}
+
+                                                {{if eq .Rarity "Rare"}}
+                                                    Редкая
+                                                {{end}}
+                                            </span>
                                         </td>
-                                        <td class="text-right">{{ .ManaCost }}</td>
-                                        <td class="text-right">{{ .GoldCost }}</td>
+                                        <td class="text-right">
+                                            {{if not (eq .CardType "Item")}}
+                                                {{ .ManaCost }}
+                                            {{end}}
+                                        </td>
+                                        <td class="text-right">
+                                            {{if eq .CardType "Item"}}
+                                                {{ .GoldCost }}
+                                            {{end}}
+                                        </td>
                                     </tr>
                                 {{end}}
                             {{end}}
